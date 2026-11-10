@@ -122,8 +122,13 @@
         "rxjs": "^7.8.2",
       },
       "devDependencies": {
+        "@effectstream/db": "0.300.3",
         "@midnightntwrk/wallet-sdk-capabilities": "4.0.0",
         "@midnightntwrk/wallet-sdk-facade": "5.0.0",
+        "@zswap-da/database": "workspace:*",
+        "@zswap-da/offer-guard": "workspace:*",
+        "fastify": "^5.0.0",
+        "pg": "^8.16.3",
       },
     },
     "packages/solver-core": {
