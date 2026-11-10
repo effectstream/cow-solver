@@ -5,7 +5,7 @@ import { midnightNetworkConfig as net } from "@effectstream/midnight-contracts/m
 import { getEnv } from "@effectstream/utils/runtime";
 
 import { forwardAdmissionPolicy } from "@zswap-da/solver-core/admission-policy";
-import { buildWallet, shieldedBalances, shieldedKeys, waitForSync } from "@zswap-da/solver-core/wallet";
+import { buildWallet, shieldedBalances, shieldedKeys, waitForSync } from "@zswap-da/kernel-client/wallet";
 import { DEFAULT_LADDER_RESOURCE_LIMITS } from "@zswap-da/solver-core/ladder-derivation";
 
 import {

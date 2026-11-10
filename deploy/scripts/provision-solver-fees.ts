@@ -10,13 +10,13 @@ import {
   redactBlockfrostProjectId,
 } from "@effectstream/midnight-contracts/midnight-env";
 
-import { installLogRedaction } from "../../packages/offer-guard/public-networks.ts";
+import { installLogRedaction } from "../../kernel/packages/offer-guard/public-networks.ts";
 import {
   buildWallet,
   shieldedBalances,
   unshieldedBalances,
   waitForSync,
-} from "../../packages/solver-core/wallet.ts";
+} from "@zswap-da/kernel-client/wallet";
 import { ensureSolverDustReady } from "./lib/solver-provision.ts";
 
 globalThis.WebSocket = WebSocket;

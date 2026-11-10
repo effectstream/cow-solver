@@ -23,8 +23,8 @@ import { join } from "node:path";
 import { mkdtemp, rm } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-import { closeTestPglite } from "../../database/test-pglite.ts";
-import { registerOfferConsumptionRoute } from "../../node/offer-consumption-read.ts";
+import { closeTestPglite } from "../../../kernel/packages/database/test-pglite.ts";
+import { registerOfferConsumptionRoute } from "../../../kernel/packages/node/offer-consumption-read.ts";
 import {
   RELAY_WS_CONTRACT_REVISION,
   parseTxSubmitted,
@@ -51,7 +51,7 @@ const JOURNAL_MODULE = new URL("../../solver/src/operation-journal.ts", import.m
 const RECOVERY_CHILD = fileURLToPath(
   new URL("../../solver/swap-job-recovery-revert-child.ts", import.meta.url),
 );
-const NODE_REQUIRE = createRequire(new URL("../../node/package.json", import.meta.url));
+const NODE_REQUIRE = createRequire(new URL("../../../kernel/packages/node/package.json", import.meta.url));
 
 type CrashState = "AWAITING_RELAY" | "RELAY_SUBMITTED" | "CONFIRMING";
 
@@ -401,7 +401,7 @@ async function main(): Promise<void> {
       import(pathToFileURL(NODE_REQUIRE.resolve("@effectstream/db/start-pglite")).href),
       import("pg"),
       import(pathToFileURL(NODE_REQUIRE.resolve("fastify")).href),
-      import("../../database/mod.ts"),
+      import("../../../kernel/packages/database/mod.ts"),
     ]);
     pglite = await startPglite(pglitePort);
     const PgClient = pgModule.default.Client;

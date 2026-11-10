@@ -14,10 +14,12 @@
  *   INCLUDING their tests. A gate that skipped tests would not have caught the
  *   harness rot it exists to prevent, and the tests are the executable
  *   description of the production contract.
- * - `packages/validator` — `swap-job-executor.ts` imports `@zswap-da/validator`
+ * - `kernel/packages/validator` — `swap-job-executor.ts` imports `@zswap-da/validator`
  *   for settlement verification, and 00003 lists its proof-variant diagnostics
  *   under this same finding. Excluding a first-party dependency would repeat
- *   the backend gate's blind spot one directory over.
+ *   the backend gate's blind spot one directory over. The package lives in the
+ *   kernel submodule; it is gated here with the solver's compiler options, so a
+ *   submodule bump that breaks the solver's use of it fails this gate.
  * - `packages/solver-frontend` (00007 FR-017) — the read-only monitor site. It
  *   consumes `@zswap-da/solver-core/status-contract` but never
  *   `@zswap-da/solver`, so the consumer scan below cannot discover it (that
@@ -46,7 +48,7 @@ import { join, relative, resolve, sep } from "node:path";
 const projectRoot = resolve(import.meta.dir, "..");
 
 /** Packages whose own files are gated. Each owns a strict tsconfig. */
-const GATED_PACKAGES = ["packages/solver", "packages/solver-core", "packages/validator"] as const;
+const GATED_PACKAGES = ["packages/solver", "packages/solver-core", "kernel/packages/validator"] as const;
 
 /**
  * Gated too, but compiled with its OWN compiler options rather than the
