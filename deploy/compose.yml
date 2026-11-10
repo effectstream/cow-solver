@@ -65,11 +65,11 @@ x-celestia-endpoints: &celestia-endpoints
   CELESTIA_AUTH_TOKEN: ""
   # How often the kernel's Celestia fetcher advances its projection.
   #
-  # `packages/node/env.ts` defaults this to 6000 ms for a devnet, which is one
+  # `kernel/packages/node/env.ts` defaults this to 6000 ms for a devnet, which is one
   # poll per six Celestia blocks at the packaged 1s cadence — so between polls
   # the projection falls further behind than `MAX_CELESTIA_LAG_BLOCKS = 4`
   # tolerates. The cadence itself is the real fix (see CELESTIA_BLOCK_TIME on
-  # the celestia service); matching the poll to the block time on top of it
+  # the kernel's celestia service); matching the poll to the block time on top of it
   # removes the remaining sawtooth, which costs one local RPC per second.
   CELESTIA_POLLING_INTERVAL_MS: ${CELESTIA_POLLING_INTERVAL_MS:-1000}
 
