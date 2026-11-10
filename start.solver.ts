@@ -32,7 +32,7 @@ import {
   redactBlockfrostProjectId,
 } from "@effectstream/midnight-contracts/midnight-env";
 
-import { installLogRedaction } from "./packages/offer-guard/public-networks.ts";
+import { installLogRedaction } from "./kernel/packages/offer-guard/public-networks.ts";
 import { isSolverEnabled } from "./packages/solver/env.ts";
 import {
   describeSolverLaunchConfig,

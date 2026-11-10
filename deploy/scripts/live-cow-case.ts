@@ -5,18 +5,18 @@ import {
   midnightNetworkConfig as net,
   redactBlockfrostProjectId,
 } from "@effectstream/midnight-contracts/midnight-env";
-import { installLogRedaction } from "../../packages/offer-guard/public-networks.ts";
+import { installLogRedaction } from "../../kernel/packages/offer-guard/public-networks.ts";
 
 import {
   buildWallet,
   shieldedBalances,
   shieldedKeys,
   waitForSync,
-} from "../../packages/solver-core/wallet.ts";
+} from "@zswap-da/kernel-client/wallet";
 import {
   canonicalRelayExtrinsicHash,
   getOfferConsumptionEvidence,
-} from "../../packages/api-contracts/receipt-client.ts";
+} from "../../kernel/packages/api-contracts/receipt-client.ts";
 import { KernelApi } from "./lib/kernel-api.ts";
 import { postMakerOffer, type PostedOffer } from "./lib/maker-offer.ts";
 

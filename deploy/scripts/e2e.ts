@@ -54,7 +54,7 @@ import {
   midnightNetworkConfig as net,
   redactBlockfrostProjectId,
 } from "@effectstream/midnight-contracts/midnight-env";
-import { installLogRedaction } from "../../packages/offer-guard/public-networks.ts";
+import { installLogRedaction } from "../../kernel/packages/offer-guard/public-networks.ts";
 
 // RELATIVE first-party imports: `deploy/` is not a bun workspace member, so
 // `@zswap-da/*` does not resolve from here (bun links workspace packages into
@@ -68,7 +68,7 @@ import {
   unshieldedBalances,
   waitForShielded,
   waitForSync,
-} from "../../packages/solver-core/wallet.ts";
+} from "@zswap-da/kernel-client/wallet";
 import {
   buildTakerHalfStandIn,
   takerHalfStandInSpec,

@@ -13,17 +13,23 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@effectstream/midnight-contracts": "0.300.2",
+    "@effectstream/midnight-contracts": "0.300.3",
     "@effectstream/mip-zswap-offer": "0.4.0",
-    "@effectstream/utils": "0.300.2",
+    "@effectstream/utils": "0.300.3",
     "@midnightntwrk/ledger-v9": "1.0.0",
     "@zswap-da/api-contracts": "workspace:*",
+    "@zswap-da/kernel-client": "workspace:*",
     "@zswap-da/solver-core": "workspace:*",
     "@zswap-da/validator": "workspace:*",
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
+    "@effectstream/db": "0.300.3",
     "@midnightntwrk/wallet-sdk-capabilities": "4.0.0",
-    "@midnightntwrk/wallet-sdk-facade": "5.0.0"
+    "@midnightntwrk/wallet-sdk-facade": "5.0.0",
+    "@zswap-da/database": "workspace:*",
+    "@zswap-da/offer-guard": "workspace:*",
+    "fastify": "^5.0.0",
+    "pg": "^8.16.3"
   }
 }

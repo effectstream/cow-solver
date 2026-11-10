@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    name: Unit tests (bun test)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # kernel/ is the backend this repository builds against (a public
+          # submodule pinned to one commit).
+          submodules: true
+      - uses: oven-sh/setup-bun@v2
+        with:
+          # The kernel's pin. Bun 1.3.3 cannot load the effectstream 0.300.x
+          # runtime (its standard decorators fail at load).
+          bun-version: 1.3.11
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      # The paths start with ./ so that `bun test` reads them as paths: a bare
+      # `packages/tests/grand-e2e` or `deploy/scripts/lib` would also match the
+      # kernel submodule's own suites under kernel/. The image-scan tests in
+      # packages/tests/grand-e2e need the runner's Docker.
+      - name: Run unit suites
+        run: >
+          bun test
+          ./packages/solver
+          ./packages/solver-core
+          ./packages/solver-frontend
+          ./packages/tests/grand-e2e
+          ./deploy/scripts/lib
+
+  solver-typecheck:
+    name: Solver typecheck (strict solver, solver-core, kernel validator, solver-frontend)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      # Production and test sources of the solver packages, the kernel's
+      # validator, the monitor site, and every first-party file that imports
+      # the solver's source. Zero diagnostics required; see
+      # scripts/solver-typecheck.ts.
+      - name: Strict solver TypeScript check
+        run: bun run typecheck:solver

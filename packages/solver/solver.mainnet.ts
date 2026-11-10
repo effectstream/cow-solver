@@ -11,7 +11,7 @@ import {
   midnightNetworkConfig as net,
   redactBlockfrostProjectId,
 } from "@effectstream/midnight-contracts/midnight-env";
-import { installLogRedaction } from "../offer-guard/public-networks.ts";
+import { installLogRedaction } from "../../kernel/packages/offer-guard/public-networks.ts";
 
 import {
   DEV_SEED,
